@@ -1,20 +1,16 @@
-import { combineReducers } from 'redux';
-
 const initialState = {
-    count: 0
+  login: false,
 };
 
 const authReducer = (state = initialState, action) => {
-    switch (action.type) {
-        case LOGIN:
-            return {
-                ...state,
-                count: action.payload
-            };
-        default:
-            return state;
-    }
-}
-export default combineReducers({
-    auth: authReducer
-  });
+  switch (action.type) {
+    case 'SET_LOGIN':
+      return { ...state, login: action.payload };
+    default:
+      return state;
+  }
+};
+
+
+
+export default authReducer;

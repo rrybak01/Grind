@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, TextInput, ScrollView, Image, Modal, Pressable,
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { useNavigation } from '@react-navigation/native';
 import { get, post, put } from "../api/client";
+import { caloriasObjetivoAux, userIdAux, isSignedIn } from '../state/State';
 
 export default function HomeScreen({ navigation }) {
 
@@ -25,9 +26,9 @@ export default function HomeScreen({ navigation }) {
   const [deadliftModal, setDeadliftModal] = React.useState(false);
   const [sesionModal, setSesionModal] = React.useState(false);
   const [refresh, setRefresh] = React.useState(true);
-  const [caloriasObjetivo, setCaloriasObjetivo] = React.useState(3000);
-  const [userId, setUserId] = React.useState(1);
-  const [isLogged, setIsLogged] = React.useState(true);
+  const [caloriasObjetivo, setCaloriasObjetivo] = caloriasObjetivoAux();
+  const [userId, setUserId] = userIdAux();
+  const [isLogged, setIsLogged] = isSignedIn();
 
   const getUsuario = async () => {
     try {
