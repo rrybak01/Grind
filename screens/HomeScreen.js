@@ -1,9 +1,7 @@
 import * as React from 'react';
 import { View, Text, StyleSheet, TextInput, ScrollView, Image, Modal, Pressable, TouchableHighlight } from 'react-native';
-import Ionicons from 'react-native-vector-icons/Ionicons';
-import { useNavigation } from '@react-navigation/native';
-import { get, post, put } from "../api/client";
-import { caloriasObjetivoAux, userIdAux, isSignedIn } from '../state/State';
+//import Ionicons from 'react-native-vector-icons/Ionicons';
+//import { get, post, put } from "../api/client";
 
 export default function HomeScreen({ navigation }) {
 
@@ -25,12 +23,8 @@ export default function HomeScreen({ navigation }) {
   const [deadlift, setDeadlift] = React.useState();
   const [deadliftModal, setDeadliftModal] = React.useState(false);
   const [sesionModal, setSesionModal] = React.useState(false);
-  const [refresh, setRefresh] = React.useState(true);
-  const [caloriasObjetivo, setCaloriasObjetivo] = caloriasObjetivoAux();
-  const [userId, setUserId] = userIdAux();
-  const [isLogged, setIsLogged] = isSignedIn();
 
-  const getUsuario = async () => {
+  /*const getUsuario = async () => {
     try {
       if (userId !== undefined) {
         const data = await get(`usuarios/${userId}`)
@@ -115,13 +109,13 @@ export default function HomeScreen({ navigation }) {
     } catch (error) {
       console.log("Error al subir las comidas: " + error);
     }
-  }
+  }*/
 
-  React.useEffect(() => {
+  /*React.useEffect(() => {
 
     getUsuario()
 
-  }, [benchModal, squatModal, deadliftModal, pesoModal, caloriasModal, nameModal])
+  }, [benchModal, squatModal, deadliftModal, pesoModal, caloriasModal, nameModal])*/
 
   return (
     <View style={styles.container}>      
@@ -252,7 +246,7 @@ export default function HomeScreen({ navigation }) {
       </Modal>
       <ScrollView style={styles.scrollView}>
         <View style={[styles.header]}>
-          <Ionicons style={styles.userContainer} onPress={() => navigation.navigate("Stack")} name="person-circle-sharp" color="white" size={70} />
+          {/*<Ionicons style={styles.userContainer} onPress={() => navigation.navigate("Stack")} name="person-circle-sharp" color="white" size={70} />*/}
           <Text style={styles.userName} onPress={() => setNameModal(true)}>{usuario.nombre}</Text>
         </View>
         <View style={[styles.content]}>

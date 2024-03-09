@@ -1,24 +1,22 @@
 import React from "react";
+
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
-
-import HomeScreen from "./screens/HomeScreen";
-import WorkoutScreen from "./screens/WorkoutsScreen";
-import FoodTrackerScreen from "./screens/FoodTrackerScreen";
-import NewTrainingScreen from "./screens/NewTrainingScreen";
-import SearchExercise from "./screens/SearchExercise";
-import Login from "./screens/Login";
-import Register from "./screens/Register";
-import SearchFoodScreen from "./screens/SearchFoodScreen";
-import AddFood from "./screens/AddFood";
-import AddExercise from "./screens/AddExercise";
-
-import Ionicons from 'react-native-vector-icons/Ionicons';
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-import { useSelector, useDispatch } from "react-redux";
+import HomeScreen from "./screens/HomeScreen";
+/*import WorkoutScreen from "./screens/WorkoutsScreen";
+import NewTrainingScreen from "./screens/NewTrainingScreen";
+import SearchExercise from "./screens/SearchExercise";
+import AddExercise from "./screens/AddExercise";*/
+/*import Login from "./screens/Login";
+import Register from "./screens/Register";*/
 
-const LoginStackNavigator = createNativeStackNavigator();
+import Ionicons from 'react-native-vector-icons/Ionicons';
+
+//import { useSelector, useDispatch } from "react-redux";
+
+/*const LoginStackNavigator = createNativeStackNavigator();
 function LoginStack() {
     return (
         <LoginStackNavigator.Navigator
@@ -48,7 +46,7 @@ function LoginStack() {
             />
         </LoginStackNavigator.Navigator>
     )
-}
+}*/
 
 const HomeStackNavigator = createNativeStackNavigator();
 function HomeStack() {
@@ -73,18 +71,18 @@ function HomeStack() {
                     title: 'Inicio',
                 }}
             />
-            <HomeStackNavigator.Screen
+            {/*<HomeStackNavigator.Screen
                 name="Stack"
                 component={NewTrainingScreen}
                 options={{
                     headerBackButtonMenuEnabled: true,
                 }}
-            />
+            />*/}
         </HomeStackNavigator.Navigator>
     )
 }
 
-const WorkoutStackNavigator = createNativeStackNavigator();
+/*const WorkoutStackNavigator = createNativeStackNavigator();
 function WorkoutStack() {
     return (
         <WorkoutStackNavigator.Navigator
@@ -134,50 +132,7 @@ function WorkoutStack() {
             />
         </WorkoutStackNavigator.Navigator>
     )
-}
-
-const FoodStackNavigator = createNativeStackNavigator();
-function FoodStack() {
-    return (
-        <FoodStackNavigator.Navigator
-            initialRouteName="FoodScreen"
-            screenOptions={{
-                headerRight: () => (
-                    <Ionicons name="settings-sharp" color="white" size={25}/>
-                ),
-                headerStyle: {
-                    backgroundColor: '#102739',
-                },
-                headerTintColor: '#fff',
-            }}
-        >
-            <FoodStackNavigator.Screen
-                name="FoodScreen"
-                component={FoodTrackerScreen}
-                options={{
-                    title: 'Food',
-                    title: 'Comidas',
-                }}
-            />
-            <FoodStackNavigator.Screen
-                name="AddFood"
-                component={SearchFoodScreen}
-                options={{
-                    headerBackButtonMenuEnabled: true,
-                    title: 'Buscar alimento',
-                }}
-            />
-            <FoodStackNavigator.Screen
-                name="CreateFood"
-                component={AddFood}
-                options={{
-                    headerBackButtonMenuEnabled: true,
-                    title: 'Añadir alimento',
-                }}
-            />
-        </FoodStackNavigator.Navigator>
-    )
-}
+}*/
 
 const Tab = createBottomTabNavigator();
 function MyTabs() {
@@ -205,32 +160,26 @@ function MyTabs() {
                     } else if (rn === "Workouts") {
                         iconName = focused ? 'trophy' : 'trophy-outline';
 
-                    } else if (rn === "Food") {
-                        iconName = focused ? 'today' : 'today';
                     }
 
-                    // You can return any component that you like here!
                     return <Ionicons name={iconName} size={size} color={color} />;
                 },
             })}>
             <Tab.Screen name="Home" component={HomeStack}></Tab.Screen>
-            <Tab.Screen name="Workouts" component={WorkoutStack}></Tab.Screen>
-            <Tab.Screen name="Food" component={FoodStack}></Tab.Screen>
+            {/*<Tab.Screen name="Workouts" component={WorkoutStack}></Tab.Screen>*/}
         </Tab.Navigator>
     )
 }
 
 export default function Navigation() {
 
-    const login = useSelector((state) => state.auth.login);
-
-    console.log("login")
-    console.log(login)
+    //const login = useSelector((state) => state.auth.login);
 
     return (
         
         <NavigationContainer>
-            {login ? <MyTabs /> : <LoginStack />}
+            {/*login ? <MyTabs /> : <LoginStack />*/}
+            <MyTabs />
         </NavigationContainer>
     )
 
