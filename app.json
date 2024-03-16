@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "GrindV2",
-    "slug": "GrindV2",
+    "name": "Grind",
+    "slug": "Grind",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",

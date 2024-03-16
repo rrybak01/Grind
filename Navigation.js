@@ -5,8 +5,8 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import HomeScreen from "./screens/HomeScreen";
-/*import WorkoutScreen from "./screens/WorkoutsScreen";
-import NewTrainingScreen from "./screens/NewTrainingScreen";
+import WorkoutScreen from "./screens/WorkoutsScreen";
+/*import NewTrainingScreen from "./screens/NewTrainingScreen";
 import SearchExercise from "./screens/SearchExercise";
 import AddExercise from "./screens/AddExercise";*/
 /*import Login from "./screens/Login";
@@ -54,14 +54,10 @@ function HomeStack() {
         <HomeStackNavigator.Navigator
             initialRouteName="HomeScreen"
             screenOptions={{
-                headerRight: () => (
-                    <Ionicons onPress={() => alert('This is a button!')} name="settings-sharp" color="white" size={25} />
-                ),
+                headerTitle: '',
                 headerStyle: {
                     backgroundColor: '#102739',
                 },
-                headerTintColor: '#fff',
-
             }}
         >
             <HomeStackNavigator.Screen
@@ -82,20 +78,16 @@ function HomeStack() {
     )
 }
 
-/*const WorkoutStackNavigator = createNativeStackNavigator();
+const WorkoutStackNavigator = createNativeStackNavigator();
 function WorkoutStack() {
     return (
         <WorkoutStackNavigator.Navigator
             initialRouteName="WorkoutScreen"
             screenOptions={{
-                headerRight: () => (
-                    <Ionicons name="settings-sharp" color="white" size={25} />
-                ),
+                headerTitle: '',
                 headerStyle: {
                     backgroundColor: '#102739',
                 },
-                headerTintColor: '#fff',
-
             }}
         >
             <WorkoutStackNavigator.Screen
@@ -106,7 +98,7 @@ function WorkoutStack() {
                 }}
 
             />
-            <WorkoutStackNavigator.Screen
+            {/*<WorkoutStackNavigator.Screen
                 name="NewWorkout"
                 component={NewTrainingScreen}
                 options={{
@@ -129,10 +121,10 @@ function WorkoutStack() {
                     headerBackButtonMenuEnabled: true,
                     title: 'Añadir ejercicio',
                 }}
-            />
+            />*/}
         </WorkoutStackNavigator.Navigator>
     )
-}*/
+}
 
 const Tab = createBottomTabNavigator();
 function MyTabs() {
@@ -143,9 +135,9 @@ function MyTabs() {
                 headerShown: false,
                 tabBarStyle: {
                     backgroundColor: '#102739',
-                    height: 65,
+                    height: 75,
                     padding: 10,
-                    paddingBottom: 10
+                    paddingBottom: 20
                 },
                 tabBarActiveTintColor: 'white',
                 tabBarInactiveTintColor: 'grey',
@@ -166,7 +158,7 @@ function MyTabs() {
                 },
             })}>
             <Tab.Screen name="Home" component={HomeStack}></Tab.Screen>
-            {/*<Tab.Screen name="Workouts" component={WorkoutStack}></Tab.Screen>*/}
+            <Tab.Screen name="Workouts" component={WorkoutStack}></Tab.Screen>
         </Tab.Navigator>
     )
 }

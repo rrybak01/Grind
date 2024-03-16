@@ -1,9 +1,25 @@
-import * as React from 'react';
-import { View, Text, StyleSheet, TextInput, ScrollView, Image, Modal, Pressable, TouchableHighlight } from 'react-native';
-//import Ionicons from 'react-native-vector-icons/Ionicons';
-//import { get, post, put } from "../api/client";
+import React, { useEffect } from 'react';
+import { 
+  View, 
+  Text, 
+  StyleSheet, 
+  TextInput, 
+  ScrollView, 
+  Image, 
+  Modal, 
+  Pressable, 
+  TouchableHighlight, 
+  ActivityIndicator 
+} from 'react-native';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import { connect } from 'react-redux';
+import { getUser } from '../redux/actions/auth';
+import { useSelector } from 'react-redux';
 
-export default function HomeScreen({ navigation }) {
+function HomeScreen({ navigation, getUser }) {
+
+  const loading = useSelector(state => state.auth.loading); 
+  const me = useSelector(state => state.auth.me); 
 
   const [usuario, setUsuario] = React.useState({});
   const [nombre, setNombre] = React.useState();
@@ -24,101 +40,13 @@ export default function HomeScreen({ navigation }) {
   const [deadliftModal, setDeadliftModal] = React.useState(false);
   const [sesionModal, setSesionModal] = React.useState(false);
 
-  /*const getUsuario = async () => {
-    try {
-      if (userId !== undefined) {
-        const data = await get(`usuarios/${userId}`)
-        setUsuario(data);
-        setCaloriasObjetivo(data.calorias)
-      }
-    } catch (error) {
-      console.log("Error al cargar los usuarios: " + error);
-    }
-  }
-
-  React.useLayoutEffect(() => {
-    navigation.setOptions({
-      headerRight: () => (
-        <TouchableHighlight
-          onPress={() => {setSesionModal(true)}}>
-          <Ionicons name="settings-sharp" color="white" size={25}/>
-        </TouchableHighlight>
-      ),
-    });
-  }, [navigation]);
-
-  React.useEffect(() => {
-    //getUsuario();
-    postComidas();
+  useEffect(() => {
+    getUser();
   }, []);
 
-  const updateUsuario = async () => {
-    try {
-      const payload = {
-        nombre: nombre,
-        email: email,
-        contraseña: contraseña,
-        peso: peso,
-        calorias: calorias,
-        benchpress: benchPress,
-        squat: squat,
-        deadlift: deadlift
-      }
-      if (userId !== undefined) {
-        const data = await put(`usuarios/${userId}`, payload);
-
-        setNombre();
-        setEmail();
-        setContraseña();
-        setBenchPress();
-        setSquat();
-        setDeadlift();
-        setPeso();
-        setCalorias();
-
-      }
-
-    } catch (error) {
-      console.log("Error al cambiar benchPress" + error)
-    }
-  }
-
-  const postComidas = async () => {
-    try {
-      const comidas = [
-        {
-          "nombre": "Desayuno",
-          "idUsuario": 1
-        },
-        {
-          "nombre": "Almuerzo",
-          "idUsuario": 1
-        },
-        {
-          "nombre": "Cena",
-          "idUsuario": 1
-        },
-        {
-          "nombre": "Aperitivos",
-          "idUsuario": 1
-        }
-      ]
-      if (userId) {
-        const data = await post(`comidas/${userId}`, comidas);
-      }
-    } catch (error) {
-      console.log("Error al subir las comidas: " + error);
-    }
-  }*/
-
-  /*React.useEffect(() => {
-
-    getUsuario()
-
-  }, [benchModal, squatModal, deadliftModal, pesoModal, caloriasModal, nameModal])*/
-
   return (
-    <View style={styles.container}>      
+    loading ? <ActivityIndicator /> :
+    <View style={styles.container}>     
       <Modal
         animationType="fade"
         transparent={true}
@@ -246,21 +174,21 @@ export default function HomeScreen({ navigation }) {
       </Modal>
       <ScrollView style={styles.scrollView}>
         <View style={[styles.header]}>
-          {/*<Ionicons style={styles.userContainer} onPress={() => navigation.navigate("Stack")} name="person-circle-sharp" color="white" size={70} />*/}
-          <Text style={styles.userName} onPress={() => setNameModal(true)}>{usuario.nombre}</Text>
+          <Ionicons style={styles.userContainer} onPress={() => navigation.navigate("Stack")} name="person-circle-sharp" color="white" size={70} />
+          <Text style={styles.userName} onPress={() => setNameModal(true)}>{me.nombre}</Text>
         </View>
         <View style={[styles.content]}>
           <View style={[styles.box, styles.box1]}>
             <View style={[styles.strenghtProgressContainer]}  >
-              <View style={[styles.progressCircle]}><Text style={[styles.text]} onPress={() => setBenchModal(true)}>{usuario.benchpress} kg</Text></View>
+              <View style={[styles.progressCircle]}><Text style={[styles.text]} onPress={() => setBenchModal(true)}>{me.benchpress} kg</Text></View>
               <Text style={[styles.text]}>Bench Press</Text>
             </View>
             <View style={[styles.strenghtProgressContainer]}>
-              <View style={[styles.progressCircle]}><Text style={[styles.text]} onPress={() => setSquatModal(true)}>{usuario.squat} kg</Text></View>
+              <View style={[styles.progressCircle]}><Text style={[styles.text]} onPress={() => setSquatModal(true)}>{me.squat} kg</Text></View>
               <Text style={[styles.text]}>Squat</Text>
             </View>
             <View style={[styles.strenghtProgressContainer]}>
-              <View style={[styles.progressCircle]}><Text style={[styles.text]} onPress={() => setDeadliftModal(true)}>{usuario.deadlift} kg</Text></View>
+              <View style={[styles.progressCircle]}><Text style={[styles.text]} onPress={() => setDeadliftModal(true)}>{me.deadlift} kg</Text></View>
               <Text style={[styles.text]}>Deadlift</Text>
             </View>
           </View>
@@ -268,10 +196,10 @@ export default function HomeScreen({ navigation }) {
             <Text style={[styles.boldText]}>Objetivos</Text>
             <Text />
             <Text style={[styles.smallText]}>Peso</Text>
-            <Text style={[styles.text]} onPress={() => setPesoModal(true)}>{usuario.peso} kg</Text>
+            <Text style={[styles.text]} onPress={() => setPesoModal(true)}>{me.peso} kg</Text>
             <Text />
             <Text style={[styles.smallText]}>Calorías diarias</Text>
-            <Text style={[styles.text]} onPress={() => setCaloriasModal(true)}>{usuario.calorias} cal</Text>
+            <Text style={[styles.text]} onPress={() => setCaloriasModal(true)}>{me.calorias} cal</Text>
           </View>
         </View>
       </ScrollView>
@@ -411,3 +339,9 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   }
 });
+
+const mapDispatchToProps = {
+  getUser,
+};
+
+export default connect(null, mapDispatchToProps)(HomeScreen);
