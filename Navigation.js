@@ -1,52 +1,13 @@
 import React from "react";
 
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import HomeScreen from "./screens/HomeScreen";
 import WorkoutScreen from "./screens/WorkoutsScreen";
-/*import NewTrainingScreen from "./screens/NewTrainingScreen";
-import SearchExercise from "./screens/SearchExercise";
-import AddExercise from "./screens/AddExercise";*/
-/*import Login from "./screens/Login";
-import Register from "./screens/Register";*/
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
-
-//import { useSelector, useDispatch } from "react-redux";
-
-/*const LoginStackNavigator = createNativeStackNavigator();
-function LoginStack() {
-    return (
-        <LoginStackNavigator.Navigator
-            initialRouteName="LoginScreen"
-            screenOptions={{
-                headerStyle: {
-                    backgroundColor: '#102739',
-                },
-                headerTintColor: '#fff',
-
-            }}
-        >
-            <LoginStackNavigator.Screen
-                name="LoginScreen"
-                component={Login}
-                options={{
-                    title: 'Inicio de sesión',
-                }}
-            />
-            <LoginStackNavigator.Screen
-                name="Register"
-                component={Register}
-                options={{
-                    title: 'Registro',
-                    headerBackVisible: false
-                }}
-            />
-        </LoginStackNavigator.Navigator>
-    )
-}*/
 
 const HomeStackNavigator = createNativeStackNavigator();
 function HomeStack() {
@@ -67,13 +28,6 @@ function HomeStack() {
                     title: 'Inicio',
                 }}
             />
-            {/*<HomeStackNavigator.Screen
-                name="Stack"
-                component={NewTrainingScreen}
-                options={{
-                    headerBackButtonMenuEnabled: true,
-                }}
-            />*/}
         </HomeStackNavigator.Navigator>
     )
 }
@@ -98,30 +52,6 @@ function WorkoutStack() {
                 }}
 
             />
-            {/*<WorkoutStackNavigator.Screen
-                name="NewWorkout"
-                component={NewTrainingScreen}
-                options={{
-                    headerBackButtonMenuEnabled: true,
-                    title: 'Nuevo entrenamiento',
-                }}
-            />
-            <WorkoutStackNavigator.Screen
-                name="SearchExercise"
-                component={SearchExercise}
-                options={{
-                    headerBackButtonMenuEnabled: true,
-                    title: 'Buscar ejercicio',
-                }}
-            />
-            <WorkoutStackNavigator.Screen
-                name="AddExercise"
-                component={AddExercise}
-                options={{
-                    headerBackButtonMenuEnabled: true,
-                    title: 'Añadir ejercicio',
-                }}
-            />*/}
         </WorkoutStackNavigator.Navigator>
     )
 }
@@ -171,7 +101,7 @@ export default function Navigation() {
         
         <NavigationContainer>
             {/*login ? <MyTabs /> : <LoginStack />*/}
-            <MyTabs />
+            <MyTabs /> 
         </NavigationContainer>
     )
 
